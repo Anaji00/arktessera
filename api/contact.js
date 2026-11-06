@@ -43,7 +43,9 @@ module.exports = async function handler(req, res) {
       });
     }
 
+    console.log(`[API /api/contact] Incoming submission for ${validation.data.companyName} (${validation.data.workEmail})`);
     const dispatchResult = await routeConsultationEmail(validation.data);
+    console.log(`[API /api/contact] Dispatched via ${dispatchResult.provider}: ID ${dispatchResult.id} to ${dispatchResult.routedTo}`);
 
     return res.status(200).json({
       ok: true,
@@ -57,7 +59,7 @@ module.exports = async function handler(req, res) {
     console.error('[API /api/contact Error]:', err);
     return res.status(500).json({
       ok: false,
-      error: 'Unable to route your request right now. Please email contact@najialess.io directly.'
+      error: 'Unable to route your request right now. Please email alessionaji1@gmail.com directly.'
     });
   }
 };

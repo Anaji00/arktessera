@@ -1,0 +1,26 @@
+# Arx Tessera - Frontend Dockerfile (Port 3002)
+FROM nginx:1.27-alpine
+
+# Remove default nginx config and replace with custom port 3002 & /api proxy config
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy static frontend assets
+COPY index.html /usr/share/nginx/html/
+COPY founder.html /usr/share/nginx/html/
+COPY style.css /usr/share/nginx/html/
+COPY script.js /usr/share/nginx/html/
+COPY logo.svg /usr/share/nginx/html/
+COPY shield-icon.png /usr/share/nginx/html/
+COPY brand-full.png /usr/share/nginx/html/
+COPY brand-logo.jpg /usr/share/nginx/html/
+COPY favicon.png /usr/share/nginx/html/
+COPY favicon.ico /usr/share/nginx/html/
+
+EXPOSE 3002
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget -qO- http://127.0.0.1:3002/ > /dev/null || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]
+

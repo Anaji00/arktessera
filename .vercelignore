@@ -1,0 +1,30 @@
+# Vercel Deployment Ignore Rules
+# Keep deployment payloads lean, fast, and secure
+
+# Local Docker & Nginx configurations
+Dockerfile*
+docker-compose.yml
+nginx.conf
+
+# Local Express standalone server (Vercel uses api/*.js serverless functions)
+server.js
+
+# Environment variables & secrets (configure in Vercel Dashboard)
+.env
+.env.*
+!.env.example
+
+# Git metadata
+.git
+.github
+
+# Testing scripts & artifacts
+test-stress*.js
+scripts/
+*.log
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.vscode
+.idea

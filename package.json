@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
+    "test:email": "node scripts/test-email.js",
     "docker:up": "docker compose up --build -d",
     "docker:down": "docker compose down"
   },
@@ -20,6 +21,9 @@
   "author": "Arx Tessera (najialess.io)",
   "license": "UNLICENSED",
   "private": true,
+  "engines": {
+    "node": ">=18.x"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",

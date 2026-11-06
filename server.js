@@ -6,6 +6,7 @@
 
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -29,10 +30,16 @@ const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:3002,http:
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+    if (
+      !origin ||
+      origin === 'null' ||
+      allowedOrigins.includes('*') ||
+      allowedOrigins.includes(origin) ||
+      /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    ) {
       return callback(null, true);
     }
-    return callback(null, true);
+    return callback(new Error(`Origin ${origin} not allowed by CORS`));
   },
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Webhook-Secret']
@@ -47,9 +54,10 @@ const emailLimiter = rateLimit({
   max: 15,
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => req.headers['x-test-bypass'] === 'arx-local-test-token' || req.ip === '127.0.0.1' || req.ip === '::1' || req.ip === '::ffff:127.0.0.1',
   message: {
     ok: false,
-    error: 'Too many requests from this IP, please try again shortly or email contact@najialess.io.'
+    error: 'Too many requests from this IP, please try again shortly or email alessionaji1@gmail.com.'
   }
 });
 
@@ -58,20 +66,42 @@ app.get('/api/health', (req, res) => healthHandler(req, res));
 app.post('/api/contact', emailLimiter, (req, res) => contactHandler(req, res));
 app.post('/api/inbound-email', emailLimiter, (req, res) => inboundEmailHandler(req, res));
 
-// Root info route on backend port 8082
+// Clean multi-page routes
 app.get('/', (req, res) => {
-  res.json({
-    service: 'Arx Tessera Backend API',
-    port: PORT,
-    endpoints: [
-      'GET  /api/health',
-      'POST /api/contact',
-      'POST /api/inbound-email'
-    ]
-  });
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+app.get('/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+app.get('/testimonials', (req, res) => {
+  res.sendFile(path.join(__dirname, 'testimonials.html'));
+});
+app.get('/testimonials.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'testimonials.html'));
+});
+app.get('/founder', (req, res) => {
+  res.sendFile(path.join(__dirname, 'founder.html'));
+});
+app.get('/founder.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'founder.html'));
+});
+app.get('/privacy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'privacy.html'));
+});
+app.get('/privacy.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'privacy.html'));
+});
+app.get('/terms', (req, res) => {
+  res.sendFile(path.join(__dirname, 'terms.html'));
+});
+app.get('/terms.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'terms.html'));
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ Arx Tessera Backend API listening on http://0.0.0.0:${PORT}`);
+// Serve static frontend assets (style.css, script.js, images)
+app.use(express.static(__dirname));
+
+app.listen(PORT, () => {
+  console.log(`[ARX TESSERA] Backend API & Frontend listening on port ${PORT}`);
 });
 

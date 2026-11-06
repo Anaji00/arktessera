@@ -1,92 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 550" width="100%" height="100%">
   <defs>
-    <!-- Dark Forest Green Gradient -->
     <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#14532d"/>
-      <stop offset="50%" stop-color="#1b4d3e"/>
-      <stop offset="100%" stop-color="#0a2f1d"/>
+      <stop offset="0%" stop-color="#22593c"/>
+      <stop offset="100%" stop-color="#163f2a"/>
     </linearGradient>
 
-    <!-- Emerald Accent Gradient -->
-    <linearGradient id="emeraldNeon" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#22c55e"/>
-      <stop offset="100%" stop-color="#15803d"/>
+    <linearGradient id="crimsonAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e52d30"/>
+      <stop offset="100%" stop-color="#cf2224"/>
     </linearGradient>
 
-    <!-- Crimson Core Gradient -->
-    <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ef4444"/>
-      <stop offset="100%" stop-color="#b91c1c"/>
+    <linearGradient id="greenNodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d7751"/>
+      <stop offset="100%" stop-color="#22593c"/>
     </linearGradient>
-
-    <!-- Subtle Drop Shadow -->
-    <filter id="shieldGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#22c55e" flood-opacity="0.3"/>
-    </filter>
   </defs>
 
   <!-- Outer Shield Crest -->
   <path d="M250 25 L450 90 V280 C450 395 355 480 250 515 C145 480 50 395 50 280 V90 L250 25 Z" 
         fill="none" 
-        stroke="#1c4832" 
+        stroke="#22593c" 
         stroke-width="18" 
         stroke-linecap="round" 
-        stroke-linejoin="round"
-        filter="url(#shieldGlow)"/>
+        stroke-linejoin="round"/>
 
   <!-- Inner Architectural Arch Border -->
   <path d="M250 65 L410 120 V270 C410 365 335 440 250 470 C165 440 90 365 90 270 V120 L250 65 Z" 
         fill="none" 
-        stroke="#22c55e" 
+        stroke="#22593c" 
         stroke-width="7" 
         stroke-linecap="round"/>
 
   <!-- Stylized Geometric "A" Ribbon Overlap -->
   <path d="M250 90 L360 330 H310 L275 250 H225 L190 330 H140 L250 90 Z" 
         fill="url(#shieldGrad)" 
-        stroke="#1c4832" 
+        stroke="#22593c" 
         stroke-width="10" 
         stroke-linejoin="round"/>
 
   <!-- Stylized Monogram "T" Stem and Crossbar -->
-  <!-- Top Crossbar -->
   <path d="M170 170 H330 V210 H275 V410 H225 V210 H170 V170 Z" 
-        fill="#ffffff" 
-        stroke="#e2e8f0" 
-        stroke-width="3"/>
+        fill="#fbfaf7" 
+        stroke="#22593c" 
+        stroke-width="4"/>
 
-  <!-- Futuristic Ribbon Swirl (Emblematic of Arx / Tessera) -->
-  <path d="M120 180 C110 320 180 430 250 455 C220 420 170 350 175 250 C180 160 230 110 250 100" 
-        fill="none" 
-        stroke="#1c4832" 
-        stroke-width="16" 
-        stroke-linecap="round"/>
+  <!-- Crimson & Forest Tessera Nodes -->
+  <circle cx="215" cy="305" r="14" fill="url(#crimsonAccent)"/>
+  <circle cx="185" cy="335" r="11" fill="url(#crimsonAccent)"/>
+  <circle cx="280" cy="275" r="16" fill="url(#crimsonAccent)"/>
+  <circle cx="315" cy="300" r="13" fill="url(#crimsonAccent)"/>
 
-  <!-- High-Tech Crimson & Emerald Neural Network / Circuit Nodes -->
-  <!-- Red Nodes (Crimson Data Core) -->
-  <circle cx="215" cy="305" r="14" fill="url(#crimsonGrad)"/>
-  <circle cx="185" cy="335" r="11" fill="url(#crimsonGrad)"/>
-  <circle cx="280" cy="275" r="16" fill="url(#crimsonGrad)"/>
-  <circle cx="315" cy="300" r="13" fill="url(#crimsonGrad)"/>
-  <rect x="295" y="235" width="22" height="22" rx="4" fill="url(#crimsonGrad)"/>
+  <line x1="215" y1="305" x2="280" y2="275" stroke="#cf2224" stroke-width="5" stroke-linecap="round"/>
+  <line x1="215" y1="305" x2="185" y2="335" stroke="#cf2224" stroke-width="4" stroke-linecap="round"/>
+  <line x1="280" y1="275" x2="315" y2="300" stroke="#cf2224" stroke-width="4" stroke-linecap="round"/>
 
-  <!-- Red Connector Lines -->
-  <line x1="215" y1="305" x2="280" y2="275" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
-  <line x1="215" y1="305" x2="185" y2="335" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
-  <line x1="280" y1="275" x2="315" y2="300" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
-  <line x1="280" y1="275" x2="306" y2="246" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
-
-  <!-- Green Hexagonal Circuit Nodes -->
-  <circle cx="195" cy="265" r="12" fill="#15803d"/>
-  <circle cx="170" cy="285" r="8" fill="#22c55e"/>
-  <circle cx="285" cy="345" r="11" fill="#15803d"/>
-
-  <!-- Green Connector Lines -->
-  <line x1="195" y1="265" x2="170" y2="285" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
-  <line x1="195" y1="265" x2="215" y2="305" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
-  <line x1="280" y1="275" x2="285" y2="345" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
-
-  <!-- Small Ambient Accent Nodes -->
-  <circle cx="215" cy="355" r="6" fill="#ef4444"/>
-  <circle cx="270" cy="380" r="5" fill="#ef4444"/>
+  <circle cx="195" cy="265" r="12" fill="url(#greenNodeGrad)"/>
+  <circle cx="285" cy="345" r="11" fill="url(#greenNodeGrad)"/>
 </svg>

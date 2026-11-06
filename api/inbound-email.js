@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
 
     const dispatchResult = await routeConsultationEmail({
       fullName: `Inbound Email (${fromEmail})`,
-      workEmail: typeof fromEmail === 'string' && fromEmail.includes('@') ? fromEmail : 'contact@najialess.io',
+      workEmail: typeof fromEmail === 'string' && fromEmail.includes('@') ? fromEmail : 'alessionaji1@gmail.com',
       companyName: subject,
       phone: 'Inbound Webhook',
       interests: ['Inbound Email Routing'],

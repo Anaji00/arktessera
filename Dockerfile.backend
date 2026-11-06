@@ -1,0 +1,27 @@
+# Arx Tessera - Backend API Dockerfile (Port 8082)
+FROM node:22-alpine AS base
+
+WORKDIR /app
+
+# Install production dependencies only
+COPY package.json ./
+RUN npm install --omit=dev && npm cache clean --force
+
+# Copy backend source and shared email routing library
+COPY server.js ./
+COPY api ./api
+COPY lib ./lib
+
+# Run as non-root user for security
+USER node
+
+ENV NODE_ENV=production
+ENV BACKEND_PORT=8082
+
+EXPOSE 8082
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD node -e "fetch('http://127.0.0.1:8082/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+
+CMD ["node", "server.js"]
+
